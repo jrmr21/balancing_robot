@@ -3,9 +3,9 @@
 #include <arduino.h>
 #include "utilitaire.h"
 
-#define Ki 3         // Ki pour avoir une réponse exacte en peu de temps       (3)
-#define Kd 888        //   Kd qui permet de rendre le système plus stable          (888)
-#define Kp 12   //  Kp afin d'améliorer le temps de réponse du système     (12)
+#define Ki 3.5         // Ki pour avoir une réponse exacte en peu de temps       (3)
+#define Kd 940        //   Kd qui permet de rendre le système plus stable          (888)
+#define Kp 13   //  Kp afin d'améliorer le temps de réponse du système     (12)
 
 #define MAX 240 
 #define MIN 73

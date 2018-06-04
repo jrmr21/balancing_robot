@@ -1,3 +1,6 @@
+/*********************************************************  PROGRAMME GESTION EQUILIBRE  **************************************************************/
+/*********************************************************      PROGRAMME main.ino       **************************************************************/
+
 #include "mpu6050.h"
 #include "moteur.h"
 #include "utilitaire.h"
@@ -10,6 +13,15 @@
 float majSetpoint(float pointActuelle,float y,char tillon, float origin);
 void runMotors(double PIDOutput);
 
+/********************************************************************************************************************************************************
+ *                                                                                                                                                     *
+ *      BBBBBB      TTTTTTTTT      SSSSS             SSSSS     NN    N     II    RRRRR                                                                 *
+ *      BB    B        TT        SS                SS          N N   N           RR   RR                                                               *
+ *      BBBBBB         TT          SSS               SSS       N  N  N     II    RRRRR                                                                 *
+ *      BB    B        TT             SS                SS     N   N N     II    RR   RR                                                               * 
+ *      BBBBBB         TT         SSSS              SSSS       n    NN     II    RR     RR                                                             *
+ *                                                                                                                                                     * 
+********************************************************************************************************************************************************/
 
 void setup() 
 { 
@@ -20,7 +32,7 @@ void setup()
   UART_Init(115200);
   init_encodeur();
 
-  float origin, setPoint = 109.42;         //getY();    //  set point dans la position de demarage du robot
+  float origin, setPoint = 116.35;         //getY();    //  set point dans la position de demarage du robot
   origin = setPoint;
 
   while(1)
@@ -56,6 +68,8 @@ void setup()
         led_power(false);
         break;  
       default:
+        setPoint = f_arret(origin);
+        led_power(false);
         break;     
     }
     
