@@ -12,7 +12,7 @@ extern String wifi_connection()
      
      return "connecté";  
 }
-/*
+
 extern String get_wifi_message()
 {
     String myData="";         //  buffer recerve data ( reception des données )
@@ -29,16 +29,17 @@ extern String get_wifi_message()
       }
       return myData;     //  renvoie les data recus
 }
-*/
-extern char get_wifi_messageChar()
+
+
+extern byte get_wifi_messageChar()
 {
-    static char myData='5';         //  default 5 == stop 
+    static byte myData = 5;         //  default 5 == stop 
     int cb = UDPTestServer.parsePacket();     //  on check la reception des données
     if (cb)                                   //  si c est vrai
     {
       UDPTestServer.read(packetBuffer, packetSize);     //  reception des data dans packet buffer
-      myData = (char)packetBuffer[0];            // on met packetBuffer dans le char "myData"
-    }
-    return myData;     //  renvoie les data recus
-}
 
+      myData = packetBuffer[0] - 48;            // on met packetBuffer dans le string "myData"
+    }
+    return myData ;     //  renvoie les data recus
+}

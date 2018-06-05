@@ -13,13 +13,13 @@ static const char* password = "mainbot123";   //
 
 
 static WiFiUDP UDPTestServer;             //  objet UDP
-static unsigned int UDPPort = 2100;     //  port de com
-static const int packetSize = 20;       //  taille des messages   ( on peut le remplacer par un define )
+static unsigned int UDPPort = 7979;     //  port de com
+static const int packetSize = 1;       //  taille des messages   ( on peut le remplacer par un define )
 static byte packetBuffer[packetSize];  //   tableau de reception des data
 
 
 
 extern String wifi_connection();
 extern String get_wifi_message(); // get wifi msg
-extern char get_wifi_messageChar();
+extern byte get_wifi_messageChar();
 #endif
