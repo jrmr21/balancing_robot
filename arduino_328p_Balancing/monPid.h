@@ -7,6 +7,11 @@
 #define Kd 940        //   Kd qui permet de rendre le système plus stable          (888)
 #define Kp 13   //  Kp afin d'améliorer le temps de réponse du système     (12)
 
+#define Ki_mpu 4         // Ki pour avoir une réponse exacte en peu de temps       (3)
+#define Kd_mpu 889       //   Kd qui permet de rendre le système plus stable          (888)
+#define Kp_mpu 13   //  Kp afin d'améliorer le temps de réponse du système     (12)
+
+
 #define MAX 240 
 #define MIN 73
 
@@ -23,6 +28,6 @@ Tous les x millisecondes, faire :
 
 void getPid(int consigne, float mesure, double &commande, byte tillon);     //     PID==true MPU   || pid == false  PWM
 
-//void getPidCorrection(int consigne, int mesure, double &commande, byte tillon);   //  PID full PWM
+void getPidCorrection(float consigne, float mesure, float &commande, byte tillon);   //  PID full Setpoint
 
 #endif

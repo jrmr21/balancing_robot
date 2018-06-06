@@ -32,7 +32,7 @@ void setup()
   UART_Init(115200);
   init_encodeur();
 
-  float origin, setPoint = 116.35;         //getY();    //  set point dans la position de demarage du robot
+  float origin, setPoint = 109.74;         //getY();    //  set point dans la position de demarage du robot
   origin = setPoint;
 
   while(1)
@@ -52,6 +52,7 @@ void setup()
         led_power(true);
         break;
       case '2':
+        getPidCorrection(origin ,New_Y , setPoint, 0);         //      reatribution setPoint en PID
         setPoint = f_gauche(origin);
         led_power(true);
         break;
@@ -60,19 +61,23 @@ void setup()
         led_power(true);
         break;    
       case '4':
+        getPidCorrection(origin ,New_Y , setPoint, 0);         //      reatribution setPoint en PID
         setPoint = f_droit(origin);
         led_power(true);
         break;
       case '5':
+        getPidCorrection(origin ,New_Y , setPoint, 0);         //      reatribution setPoint en PID
         setPoint = f_arret(origin);
         led_power(false);
         break;  
       default:
+        getPidCorrection(origin ,New_Y , setPoint, 0);         //      reatribution setPoint en PID
         setPoint = f_arret(origin);
         led_power(false);
         break;     
     }
     
+	  
     getPid( setPoint, New_Y, PIDOutput, 0);   //  mpu,  pooint objectif, point actuelle, sortie, periode d echantillonage ms
     runMotors(PIDOutput);    
   }

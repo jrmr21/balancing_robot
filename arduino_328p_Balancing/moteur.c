@@ -11,8 +11,6 @@ void init_moteur()
 }
 
 
-
-
 void avant()    //  2 moteurs sens de rotation avant
 {
     moteurD(1);   
@@ -35,7 +33,7 @@ void power_off()
 float f_droit(float origin)
 {
   commandeD = 1;   //  vitesse de direction gauche élevé
-  commandeG = 0.8;
+  commandeG = 0.82;
   return origin;  
 }
 
@@ -50,14 +48,14 @@ float f_avant(float origin)
 {
   commandeD = 1;   //  vitesse de direction gauche élevé
   commandeG = 1;
-  return origin + 9.3;
+  return origin + 6;
 }
 
 float f_arriere(float origin)
 {
   commandeD = 1;   //  vitesse de direction gauche élevé
   commandeG = 1;
-  return origin - 7.2;
+  return origin - 4 ;
 }
 
 

@@ -46,3 +46,38 @@ void getPid(int consigne, float mesure, double &commande, byte tillon) // true =
   erreur_precedente = erreur ;
   return ;
 }
+
+
+void getPidCorrection(float consigne, float mesure, float &commande, byte tillon)   //  PID full Setpoint
+{
+  static unsigned long startTime = 0 ;    //  millis function
+  static int somme_erreurs=0, erreur_precedente=0;      //  les variables constantes
+  
+  int erreur=0, variation_erreur=0;
+  double TEMPOcommande=0;
+
+  erreur = consigne - mesure;
+  somme_erreurs += erreur;
+  
+  if( (millis() - startTime) > tillon  )   //  fin d echantillonnage
+  {
+      startTime = millis();
+      variation_erreur = erreur - erreur_precedente;  
+      TEMPOcommande = Kp_mpu * erreur + Ki_mpu * somme_erreurs + Kd_mpu * variation_erreur;
+      
+      TEMPOcommande = mapping(TEMPOcommande, -1300, 2040, 105.42, 116.42 );   //  adaptation du coef de pid en angle rechercher
+                                                                               //   109.82;          
+      commande = TEMPOcommande;
+
+      /*Serial.println("pid MPU :  ");
+      Serial.println(TEMPOcommande);*/
+      
+      somme_erreurs = 0;
+      erreur_precedente = erreur;
+ 
+    return ;
+  }
+  erreur_precedente = erreur ;
+  return ;
+}
+
