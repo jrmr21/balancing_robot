@@ -31,15 +31,15 @@ extern String get_wifi_message()
 }
 
 
-extern byte get_wifi_messageChar()
+extern char get_wifi_messageChar()
 {
-    static byte myData = 5;         //  default 5 == stop 
+    static char myData = '5';         //  default 5 == stop 
     int cb = UDPTestServer.parsePacket();     //  on check la reception des données
     if (cb)                                   //  si c est vrai
     {
       UDPTestServer.read(packetBuffer, packetSize);     //  reception des data dans packet buffer
 
-      myData = packetBuffer[0] - 48;            // on met packetBuffer dans le string "myData"
+      myData = packetBuffer[0]/* - 48*/;            // on met packetBuffer dans le string "myData"
     }
     return myData ;     //  renvoie les data recus
 }

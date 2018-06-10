@@ -23,11 +23,13 @@ void setup() {
 
 
 void loop()
-{
+{   
+
     //Serial.println(get_wifi_message());
     digitalWrite(CS, LOW);                                     //Pull CS Line Low
     Serial.println(get_wifi_messageChar());
     SPI.transfer(get_wifi_messageChar());                                        //Send a byte (0x02) to the slave i.e. Arduino UNO
     delayMicroseconds(10);                                     //Give some time for the slave to process/do something with the recived data
     digitalWrite(CS, HIGH);                                    //Pull CS Line High
+
 }
